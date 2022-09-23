@@ -18,6 +18,11 @@ Press <b>F12</b> to see the results
 
 <img id="player_img">
 </img>
+<br>
+<select id="team1" onchange="create_teams">
+</select>
+<select id="team2" onchange="create_teams">
+</select>
 
 <script>
 function change_teams(e)
@@ -32,6 +37,20 @@ function change_teams(e)
     console.log(current_players);
     team_members_sel.innerHTML = ""; //clear the player option box
     current_players.forEach(d => team_members_sel.add(new Option(d.Name,d.ID))); //add all players to the option box
+}
+function create_teams(team1, team2)
+{
+    let team1_select = team1.target;
+    let team2_select = team2.target;
+    let v1 = team1_select.value;
+    let v2 = team2_select.value;
+    let t1 = team1_select.options
+        [team1_select.selectedIndex].text;
+    let t2 = team2_select.options
+        [team2_select.selectedIndex].text;
+    console.log("Selected Team 1: " + v1 + "\n"
+                + "Selected Team 2:" + v2 + "\n"
+                + t1 + " " + t2)
 }
 
 function change_team_player(e)
