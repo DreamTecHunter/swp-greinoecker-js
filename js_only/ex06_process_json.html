@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Example 05: OO-Programming</title>
-     <script src="data/teams_fifa22.js"></script>
-     <script src="data/players_fifa22.js"></script>
+    <script src="data/teams_fifa22.js"></script>
+    <script src="data/players_fifa22.js"></script>
 </head>
 <body>
 Press <b>F12</b> to see the results
@@ -24,57 +24,64 @@ Press <b>F12</b> to see the results
 <select id="team2" onchange="create_teams">
 </select>
 
+<!-- <div id="age"></div> -->
+
+
 <script>
-function change_teams(e)
-{
-    let teams_sel = e.target; //which team is now selected
-    let v = teams_sel.value; //get the value of the selected team for further queries
-    let t = teams_sel.options[teams_sel.selectedIndex].text; //which text is associated with the value
-    console.log(v + t + e);
+
+    function change_teams(e) {
+        let teams_sel = e.target; //which team is now selected
+        let v = teams_sel.value; //get the value of the selected team for further queries
+        let t = teams_sel.options[teams_sel.selectedIndex].text; //which text is associated with the value
+        console.log(v + t + e);
+
+        let team_members_sel = document.getElementById("team_members");
+        let current_players = players.filter(p => p.Club === t); //get all players of the selected team
+        console.log(current_players);
+        team_members_sel.innerHTML = ""; //clear the player option box
+        current_players.forEach(d => team_members_sel.add(new Option(d.Name, d.ID))); //add all players to the option box
+    }
+
+    function create_teams(e) {
+        let team1_select = e.target;
+        let team2_select = e.target;
+        let v1 = team1_select.value;
+        let v2 = team2_select.value;
+        let t1 = team1_select.options
+            [team1_select.selectedIndex].text;
+        let t2 = team2_select.options
+            [team2_select.selectedIndex].text;
+        console.log("Selected Team 1: " + v1 + "\n"
+            + "Selected Team 2:" + v2 + "\n"
+            + t1 + " " + t2)
+    }
+
+    function change_team_player(e) {
+        let player_sel = e.target;
+        let v = player_sel.value;
+        let t = player_sel.options[player_sel.selectedIndex].text;
+
+        let curr_player = players.find(p => p.Name === t);
+        console.log(curr_player.PhotoUrl);
+        let player_img = document.getElementById("player_img");
+        player_img.src = curr_player.PhotoUrl;
+    }
+
+    function show_4_player_informations(e) {
+
+    }
+
+    console.log(teams);
+    console.log(players[10]);
+
+    //fill the teams option box with the team names
+    let teams_sel = document.getElementById("teams");
+    teams.forEach(d => teams_sel.add(new Option(d.Name, d.ID)));
+    teams_sel.addEventListener("change", change_teams);
 
     let team_members_sel = document.getElementById("team_members");
-    let current_players = players.filter(p => p.Club === t); //get all players of the selected team
-    console.log(current_players);
-    team_members_sel.innerHTML = ""; //clear the player option box
-    current_players.forEach(d => team_members_sel.add(new Option(d.Name,d.ID))); //add all players to the option box
-}
-function create_teams(team1, team2)
-{
-    let team1_select = team1.target;
-    let team2_select = team2.target;
-    let v1 = team1_select.value;
-    let v2 = team2_select.value;
-    let t1 = team1_select.options
-        [team1_select.selectedIndex].text;
-    let t2 = team2_select.options
-        [team2_select.selectedIndex].text;
-    console.log("Selected Team 1: " + v1 + "\n"
-                + "Selected Team 2:" + v2 + "\n"
-                + t1 + " " + t2)
-}
+    team_members_sel.addEventListener("change", change_team_player); //this is another way how to add an eventlistener to the option box
 
-function change_team_player(e)
-{
-    let player_sel = e.target;
-    let v = player_sel.value;
-    let t = player_sel.options[player_sel.selectedIndex].text;
-
-    let curr_player = players.find(p => p.Name === t);
-    console.log(curr_player.PhotoUrl);
-    let player_img = document.getElementById("player_img");
-    player_img.src = curr_player.PhotoUrl;
-
-}
-console.log(teams);
-console.log(players[10]);
-
-//fill the teams option box with the team names
-let teams_sel = document.getElementById("teams");
-teams.forEach(d => teams_sel.add(new Option(d.Name,d.ID)));
-teams_sel.addEventListener("change", change_teams);
-
-let team_members_sel = document.getElementById("team_members");
-team_members_sel.addEventListener("change", change_team_player); //this is another way how to add an eventlistener to the option box
 </script>
 </body>
 </html>
