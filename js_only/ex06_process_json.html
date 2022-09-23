@@ -82,6 +82,10 @@ Press <b>F12</b> to see the results
     let team_members_sel = document.getElementById("team_members");
     team_members_sel.addEventListener("change", change_team_player); //this is another way how to add an eventlistener to the option box
 
+    let team1_sel = document.getElementById("team1")
+    teams.forEach(d => team1_sel.add(new Option(d.Name, d.ID)))
+    team1_sel.addEventListener("change", create_teams)
+
 </script>
 </body>
 </html>
