@@ -21,8 +21,11 @@ Press <b>F12</b> to see the results
 <br>
 <select id="team1" onchange="create_teams">
 </select>
+<button id="btn_add_team1" onclick="btn_control_add_to_team1"></button>
+<br>
 <select id="team2" onchange="create_teams">
 </select>
+<button id="btn_add_team2" onclick="btn_control_add_to_team2"></button>
 
 <!-- <div id="age"></div> -->
 
@@ -42,7 +45,8 @@ Press <b>F12</b> to see the results
         current_players.forEach(d => team_members_sel.add(new Option(d.Name, d.ID))); //add all players to the option box
     }
 
-    function create_teams(e) {
+    function create_teams(e)
+    {
         let team1_select = e.target;
         let team2_select = e.target;
         let v1 = team1_select.value;
@@ -54,6 +58,19 @@ Press <b>F12</b> to see the results
         console.log("Selected Team 1: " + v1 + "\n"
             + "Selected Team 2:" + v2 + "\n"
             + t1 + " " + t2)
+    }
+    function btn_control_add_to_team1(e)
+    {
+        //teams.keys[document.getElementById("team1").id]
+        let t = players.options[e.target.selectedIndex].text
+        let cur_p = players.find(p => p.Name === t)
+        cur_p.ID
+        let t1 = document.getElementById("")
+    }
+
+    function btn_control_add_to_team2(e)
+    {
+
     }
 
     function change_team_player(e) {
