@@ -45,14 +45,18 @@ Press <b>F12</b> to see the results
         let team_members = document.getElementById("team_members");
         let team = team1.options[team1.selectedIndex].value;
         let player = team_members.options[team_members.selectedIndex].value;
-        if (map_team1.has(player)) {
-            alert("player already in team1");
-        } else {
-            map_team1.set(player, team);
-            team1.add(new Option(player.ID, player.Name));
-            console.log(map_team1);
+        if(map_team2.has(player)){
+            alert("Player already in team 2. Its not possible to add the same player to another team!");
         }
-
+        else{
+            if (map_team1.has(player)) {
+                alert("player already in team1");
+            } else {
+                map_team1.set(player, team);
+                team1.add(new Option(player.ID, player.Name));
+                console.log(map_team1);
+            }
+        }
     }
 
     function btn_control_add_to_team2(){
@@ -61,12 +65,17 @@ Press <b>F12</b> to see the results
         let team_members = document.getElementById("team_members");
         let team = team2.options[team2.selectedIndex].value;
         let player = team_members.options[team_members.selectedIndex].value;
-        if (map_team2.has(player)) {
-            alert("player already in team2");
-        } else {
-            map_team2.set(player, team);
-            team2.add(new Option(player.ID, player.Name));
-            console.log(map_team2);
+        if(map_team1.has(player)){
+            alert("Player already in team 1. Its not possible to add the same player to another team!");
+        }
+        else{
+            if (map_team2.has(player)) {
+                alert("player already in team2");
+            } else {
+                map_team2.set(player, team);
+                team2.add(new Option(player.ID, player.Name));
+                console.log(map_team2);
+            }
         }
     }
 
