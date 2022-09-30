@@ -29,16 +29,51 @@ Press <b>F12</b> to see the results
 <div id="weight"></div>
 <h4>nationality:</h4>
 <div id="nationality"></div>
-<select id="team1" onchange="create_teams">
+<select id="team1" onchange="create_team_1">
 </select>
-<button id="btn_add_team1" onclick="btn_control_add_to_team1"></button>
+<button id="btn_add_team1" onclick="btn_control_add_to_team1()"></button>
 <br>
-<select id="team2" onchange="create_teams">
+<select id="team2" onchange="create_team_2">
 </select>
-<button id="btn_add_team2" onclick="btn_control_add_to_team2"></button>
+<button id="btn_add_team2" onclick="btn_control_add_to_team2()"></button>
 
 
 <script>
+
+    const map_team1 = new Map();
+    const map_team2 = new Map();
+
+
+    function btn_control_add_to_team1() {
+        let team1 = document.getElementById("team1");
+        let team_members = document.getElementById("team_members");
+        let team = team1.options[team1.selectedIndex].value;
+        let player = team_members.options[team_members.selectedIndex].value;
+        if (map_team1.has(player)) {
+            alert("player already in team1");
+        } else {
+            map_team1.set(player, team);
+            team1.add(new Option(player.ID, player.Name));
+            console.log(map_team2);
+        }
+    }
+
+    function btn_control_add_to_team2(){
+        let team2 = document.getElementById("team2");
+        let team_members = document.getElementById("team_members");
+        let team = team2.options[team2.selectedIndex].value;
+        let player = team_members.options[team_members.selectedIndex].value;
+        if (map_team2.has(player)) {
+            alert("player already in team2");
+        } else {
+            map_team2.set(player, team);
+            team2.add(new Option(player.ID, player.Name));
+            console.log(map_team2);
+        }
+    }
+
+
+
 
     function change_teams(e) {
         let teams_sel = e.target; //which team is now selected
@@ -53,33 +88,34 @@ Press <b>F12</b> to see the results
         current_players.forEach(d => team_members_sel.add(new Option(d.Name, d.ID))); //add all players to the option box
     }
 
-    function create_teams(e)
+    function create_team_1(e)
     {
+        let player_select = document.getElementById("team_members");
+        let pl = player_select.options
+            [player_select.selectedIndex].value;
         let team1_select = e.target;
-        let team2_select = e.target;
         let v1 = team1_select.value;
-        let v2 = team2_select.value;
         let t1 = team1_select.options
             [team1_select.selectedIndex].text;
+        console.log("Player : " + pl + "\n" +
+            "Selected Team 1: " + v1 + "\n"
+            + t1);
+    }
+
+    function create_team_2(e)
+    {
+        let player_select = document.getElementById("team_members");
+        let pl = player_select.options
+            [player_select.selectedIndex].text;
+        let team2_select = e.target;
+        let v2 = team2_select.value;
         let t2 = team2_select.options
             [team2_select.selectedIndex].text;
-        console.log("Selected Team 1: " + v1 + "\n"
-            + "Selected Team 2:" + v2 + "\n"
-            + t1 + " " + t2)
-    }
-    function btn_control_add_to_team1(e)
-    {
-        //teams.keys[document.getElementById("team1").id]
-        let t = players.options[e.target.selectedIndex].text
-        let cur_p = players.find(p => p.Name === t)
-        cur_p.ID
-        let t1 = document.getElementById("")
+        console.log("Player : " + pl + "\n" +
+            "Selected Team 2:" + v2 + "\n"
+             + t2)
     }
 
-    function btn_control_add_to_team2(e)
-    {
-
-    }
 
     function change_team_player(e) {
         let player_sel = e.target;
