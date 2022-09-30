@@ -147,10 +147,10 @@ Press <b>F12</b> to see the results
 
     let team1_sel = document.getElementById("team1")
     teams.forEach(d => team1_sel.add(new Option(d.Name, d.ID)))
-    team1_sel.addEventListener("change", create_teams)
+    team1_sel.addEventListener("change", create_team_1)
     let team2_sel = document.getElementById("team2")
     teams.forEach(d => team2_sel.add(new Option(d.Name, d.ID)))
-    team2_sel.addEventListener("change", create_teams)
+    team2_sel.addEventListener("change", create_team_2)
 
 </script>
 </body>
