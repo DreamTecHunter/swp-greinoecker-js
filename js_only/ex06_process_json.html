@@ -32,10 +32,12 @@ Press <b>F12</b> to see the results
 <select id="team1" onchange="create_team_1">
 </select>
 <button id="btn_add_team1" onclick="btn_control_add_to_team1()"></button>
+<button id="btn_remove_team1" onclick="button_control_remove_from_team1()"></button>
 <br>
 <select id="team2" onchange="create_team_2">
 </select>
 <button id="btn_add_team2" onclick="btn_control_add_to_team2()"></button>
+<button id="btn_remove_team2" onclick="button_control_remove_from_team2()"></button>
 
 
 <script>
@@ -72,7 +74,33 @@ Press <b>F12</b> to see the results
         }
     }
 
+    function button_control_remove_from_team1(e){
+        let team1 = document.getElementById("team1");
+        let team_members = document.getElementById("team_members");
+        let team = team1.options[team1.selectedIndex].value;
+        let player = team_members.options[team_members.selectedIndex].value;
+        if (map_team1.has(player)) {
+            map_team1.delete(player);
+            //team1.remove(team1.selectedIndex);
+            console.log(map_team1);
+        } else {
+            alert("player not in team1");
+        }
+    }
 
+    function button_control_remove_from_team2(e) {
+        let team2 = document.getElementById("team2");
+        let team_members = document.getElementById("team_members");
+        let team = team2.options[team2.selectedIndex].value;
+        let player = team_members.options[team_members.selectedIndex].value;
+        if (map_team2.has(player)) {
+            map_team2.delete(player);
+            //team2.remove(team2.selectedIndex);
+            console.log(map_team2);
+        } else {
+            alert("player not in team2");
+        }
+    }
 
 
     function change_teams(e) {
