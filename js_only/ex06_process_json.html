@@ -19,15 +19,9 @@ Press <b>F12</b> to see the results
 <img id="player_img">
 </img>
 <br>
-<button onclick="show_info()">show more information</button>
-<h4>age:</h4>
 <div id="age"></div>
-
-<h4>height:</h4>
 <div id="height"></div>
-<h4>weight:</h4>
 <div id="weight"></div>
-<h4>nationality:</h4>
 <div id="nationality"></div>
 <select id="team1" onchange="create_team_1">
 </select>
@@ -58,7 +52,7 @@ Press <b>F12</b> to see the results
         }
     }
 
-    function btn_control_add_to_team2(){
+    function btn_control_add_to_team2() {
         let team2 = document.getElementById("team2");
         let team_members = document.getElementById("team_members");
         let team = team2.options[team2.selectedIndex].value;
@@ -71,8 +65,6 @@ Press <b>F12</b> to see the results
             console.log(map_team2);
         }
     }
-
-
 
 
     function change_teams(e) {
@@ -88,8 +80,7 @@ Press <b>F12</b> to see the results
         current_players.forEach(d => team_members_sel.add(new Option(d.Name, d.ID))); //add all players to the option box
     }
 
-    function create_team_1(e)
-    {
+    function create_team_1(e) {
         let player_select = document.getElementById("team_members");
         let pl = player_select.options
             [player_select.selectedIndex].value;
@@ -102,8 +93,7 @@ Press <b>F12</b> to see the results
             + t1);
     }
 
-    function create_team_2(e)
-    {
+    function create_team_2(e) {
         let player_select = document.getElementById("team_members");
         let pl = player_select.options
             [player_select.selectedIndex].text;
@@ -113,7 +103,7 @@ Press <b>F12</b> to see the results
             [team2_select.selectedIndex].text;
         console.log("Player : " + pl + "\n" +
             "Selected Team 2:" + v2 + "\n"
-             + t2)
+            + t2)
     }
 
 
@@ -129,9 +119,26 @@ Press <b>F12</b> to see the results
     }
 
     function show_info(e) {
-        console.log("info")
-        document.getElementById("age").innerText = "test"
+        let player_sel = e.target;
+        let v = player_sel.value;
+        let t = player_sel.options[player_sel.selectedIndex].text;
 
+        let curr_player = players.find(p => p.Name === t);
+        console.log(curr_player)
+        document.getElementById("age").innerText = "age:" + curr_player.Age; // ok es wird curr_player.age vorgeschlagen, obwohl "a" -> "A" sein muss
+        document.getElementById("height").innerText = "height: " + curr_player.Height;
+        document.getElementById("weight").innerText = "weight: " + curr_player.Weight;
+        document.getElementById("nationality").innerText = "nationality: " + curr_player.Nationality;
+        //console.log(players)
+        /*
+        let player_sel = e.target;
+        let v = player_sel.value;
+        let t = player_sel.options[player_sel.selectedIndex].text;
+
+        let curr_player = players.find(p => p.Name === t)
+        console.log(curr_player)
+        //document.getElementById("age").innerText = curr_player.age;
+        */
     }
 
     console.log(teams);
@@ -144,6 +151,9 @@ Press <b>F12</b> to see the results
 
     let team_members_sel = document.getElementById("team_members");
     team_members_sel.addEventListener("change", change_team_player); //this is another way how to add an eventlistener to the option box
+
+    let info = document.getElementById("team_members")
+    info.addEventListener("change", show_info)
 
     let team1_sel = document.getElementById("team1")
     teams.forEach(d => team1_sel.add(new Option(d.Name, d.ID)))
