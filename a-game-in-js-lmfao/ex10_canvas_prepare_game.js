@@ -8,6 +8,7 @@ let game = {
         this.intervalNewEnemy = setInterval(newEnemy, 600);
         this.player = new sprite(30, 30, "red", 10, 120);
         this.enemies = [];
+        this.bonussteine = [];
         this.keyCode = -1; //when there is no key pressed
         window.addEventListener('keydown', (e) =>
         {
@@ -68,7 +69,13 @@ function redraw() {
 
     game.player.redraw();
 
-
+    game.bonussteine.forEach((e) => {
+        console.log(e)
+        let yDelta = Math.floor(Math.random()*3)-1;
+        e.x -= 1;
+        e.y += yDelta;
+        e.redraw();
+    })
     game.enemies.forEach((e) => {
         console.log(e)
         let yDelta = Math.floor(Math.random() * 11) - 5;
@@ -81,9 +88,14 @@ function redraw() {
 function newEnemy()
 {
     let y = Math.floor(Math.random()*1024);
-    e = new sprite(30, 30, "blue", 1000, y);
+    let e = new sprite(30, 30, "blue", 1000, y);
     game.enemies.push(e);
 
+}
+function newBonusstein(){
+    let y = Math.floor(Math.random()*1024);
+    let bs = new sprite(30, 30, "purple", 1000, y);
+    game.bonussteine.push(bs)
 }
 function draw_image() {
     let img = new Image();
