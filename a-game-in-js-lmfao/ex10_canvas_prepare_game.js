@@ -6,6 +6,7 @@ let game = {
         this.clear();
         this.interval = setInterval(redraw, 20);
         this.intervalNewEnemy = setInterval(newEnemy, 600);
+        this.intervalNewBonusstein = setInterval(newBonusstein, 3000);
         this.player = new sprite(30, 30, "red", 10, 120);
         this.score = 0;
         this.enemies = [];
