@@ -91,12 +91,24 @@ function calculate_collision() {
     // if entity is out of screen, remove it from the array
     // if entity is in collision with player, remove it from the array
     // if player is in collision with enemy, game over
-    if((game.player.x && game.player.y) == (game.enemies.x && game.enemies.y)){
+    if((Math.abs(game.player.x) == Math.abs(game.enemies.x))
+        // checks if player and enemy are in the same x position
+        &&
+        (Math.abs(game.player.y) == Math.abs(game.enemies.y)))
+        // checks if player and enemy are in the same y position
+    { // if so, game over
         console.log("Game Over");
         game.clear();
     }
     // if player is in collision with bonusstein, score++
-    if((game.player.x && game.player.y) == (game.bonussteine.x && game.bonussteine.y)){
+    if((Math.abs(game.player.x) == Math.abs(game.bonussteine.x))
+        // checks if player and bonusstein are in the same x position
+        &&
+        (Math.abs(game.player.y) == Math.abs(game.bonussteine.y)))
+        // checks if player and bonusstein are in the same y position
+        // if so, score+=10
+    {
+        game.bonussteine.remove();
         console.log("Hit a score up gem");
         console.log("Score: you received 10 points");
         game.score += 10;
