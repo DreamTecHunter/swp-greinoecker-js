@@ -89,8 +89,6 @@ function redraw() {
 
 function calculate_collision() {
     //TODO : calculate collision
-    // if entity is out of screen, remove it from the array
-    // if entity is in collision with player, remove it from the array
     // if player is in collision with enemy, game over
     if((Math.abs(game.player.x) == Math.abs(game.enemies.x))
         // checks if player and enemy are in the same x position
@@ -99,6 +97,7 @@ function calculate_collision() {
         // checks if player and enemy are in the same y position
     { // if so, game over
         console.log("Game Over");
+        game.enemies.remove();
         game.clear();
     }
     // if player is in collision with bonusstein, score++
