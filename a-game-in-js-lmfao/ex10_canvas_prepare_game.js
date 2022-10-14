@@ -7,6 +7,7 @@ let game = {
         this.interval = setInterval(redraw, 20);
         this.intervalNewEnemy = setInterval(newEnemy, 600);
         this.player = new sprite(30, 30, "red", 10, 120);
+        this.score = 0;
         this.enemies = [];
         this.bonussteine = [];
         this.keyCode = -1; //when there is no key pressed
@@ -83,6 +84,23 @@ function redraw() {
         e.y += yDelta;
         e.redraw();
     })
+}
+
+function calculate_collision() {
+    //TODO : calculate collision
+    // if entity is out of screen, remove it from the array
+    // if entity is in collision with player, remove it from the array
+    // if player is in collision with enemy, game over
+    if((game.player.x && game.player.y) == (game.enemies.x && game.enemies.y)){
+        console.log("Game Over");
+        game.clear();
+    }
+    // if player is in collision with bonusstein, score++
+    if((game.player.x && game.player.y) == (game.bonussteine.x && game.bonussteine.y)){
+        console.log("Hit a score up gem");
+        console.log("Score: you received 10 points");
+        game.score += 10;
+    }
 }
 
 function newEnemy()
