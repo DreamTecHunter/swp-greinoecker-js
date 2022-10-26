@@ -6,9 +6,19 @@
 </head>
 <body>
 
-<img id="img1" width="25" height="25"  src="img/5mb.png" alt="5mb" style="visibility: hidden">
-<button onclick="start()">Start!</button>
-<canvas id="field" width="1024" height="1024"  style="border:1px solid #000000;"></canvas>
+<img id="img1" width="25" height="25" src="img/5mb.png" alt="5mb" style="visibility: hidden; float: left">
+<button style="float: left" onclick="start()">Start!</button>
+<canvas id="field" width="1024" height="1024" style="border:1px solid #000000; float: left"></canvas>
+<div style="float: left">
+    <div>
+        <p style="float: left">Score: </p>
+        <p id="score" style="float: left">100</p>
+    </div>
+    <div>
+        <p style="float: left">Time:</p>
+        <p style="float: left" id="clock">0s</p>
+    </div>
+</div>
 
 <script src="ex10_canvas_prepare_game.js">
 </script>
