@@ -2,22 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Example 03: Arrays</title>
+    <title>Exercise 2 - Game: Dodge Corona</title>
+    <style>
+        body{
+            background-color: #252525;
+        }
+        h1 {
+            color: darkviolet;
+        }
+
+        h2 {
+            color: yellowgreen;
+        }
+
+        h3 {
+            color: brown;
+        }
+
+        p {
+            color: coral;
+        }
+
+        #img1 {
+            visibility: hidden;
+        }
+
+        #start_button {
+            color: white;
+            background-color: blueviolet;
+            border-color: darkviolet;
+            border-radius: 2px;
+        }
+
+        #field {
+            border: 1px solid gray;
+            background-color: white;
+        }
+
+        .left {
+            float: left;
+        }
+    </style>
 </head>
 <body>
 
 <img id="img1" width="25" height="25" src="img/5mb.png" alt="5mb" style="visibility: hidden; float: left">
-<button style="float: left" onclick="start()">Start!</button>
+<button id="start_button" class="left" onclick="start()">Start!</button>
 <canvas id="field" width="1024" height="1024" style="border:1px solid #000000; float: left"></canvas>
 <div style="float: left">
-    <div>
-        <p style="float: left">Score: </p>
-        <p id="score" style="float: left">100</p>
-    </div>
-    <div>
-        <p style="float: left">Time:</p>
-        <p style="float: left" id="clock">0s</p>
-    </div>
+    <h1>Exercise 2 - Game: Dodge Corona</h1>
+    <h2>Instructions</h2>
+    <p id="instructions">Something</p>
+    <h2>Current Game-Info</h2>
+    <h3>Score</h3>
+    <p id="score"></p>
+    <h3>Clock</h3>
+    <p id="clock"></p>
 </div>
 
 <script src="ex10_canvas_prepare_game.js">
